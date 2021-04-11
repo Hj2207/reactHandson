@@ -1,0 +1,32 @@
+import { useState } from "react";
+
+const App = () => {
+
+  const [usercreds, setUserCreds] = useState({
+    email:'',
+    psd:''
+  });
+
+  const handleChange = (e) => {
+    const { name, value} = e.target;
+    setUserCreds({...usercreds, [name]: value})
+  }
+  const handleSubmit =(e)=>{
+  e.preventDefault();
+    alert(usercreds.email);
+  }
+  
+  return (
+    <div>
+      <h3>Sign In </h3>
+      <form className='form'>
+        Email: <input type="email" name="email" onChange={handleChange} /><br/><br/>
+        Password: <input type="password" name="psd" onChange={handleChange} /> <br/>
+        <button onClick = {handleSubmit}>Submit</button>
+      </form>
+     
+    </div>
+  );
+}
+  
+export default App;
