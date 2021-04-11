@@ -1,0 +1,38 @@
+import { useState } from "react";
+
+const App = () => {
+  const [todos,setTodo] = useState([]);
+  const [item,setItem] = useState('');
+
+ const handleChange = (event) =>{
+  const input = event.target.value;
+  setItem(input);
+ 
+
+  }
+  const handleSubmit = () =>{
+    if(item.length>0){
+      setTodo([...todos,item]);
+      setItem('');
+    }
+   
+  }
+
+  return (
+    <div>
+     <h3>Todo List</h3>
+     <input type="text" name = "item" onChange={handleChange}/>
+     <button onClick= {handleSubmit}
+       >Add</button>
+       <ul>
+       { todos.length>0 ?
+         todos.map(todo => {
+          return <li>{todo}</li>
+         }) : ''
+       }
+       </ul>
+    </div>
+  );
+}
+
+export default App;
