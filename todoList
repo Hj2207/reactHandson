@@ -18,6 +18,11 @@ const App = () => {
    
   }
 
+  const handleDel =(e) =>{
+  const newTodos=todos.filter(todo => todo !== e.target.name);
+  setTodo(newTodos);  
+}
+
   return (
     <div>
      <h3>Todo List</h3>
@@ -27,7 +32,13 @@ const App = () => {
        <ul>
        { todos.length>0 ?
          todos.map(todo => {
-          return <li>{todo}</li>
+          return (
+            <>
+            <li>{todo}</li>
+            <button onClick={handleDel} name ={todo}> Delete</button><br/>
+            </>
+          )
+      
          }) : ''
        }
        </ul>
