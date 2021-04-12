@@ -1,0 +1,66 @@
+
+import {  useState } from "react";
+import { Route, Switch } from "react-router-dom";
+import "./styles.css"
+const SignIn = () => {
+  const [usercreds, setUserCreds] = useState({
+    email:'',
+    psd:''
+  });
+
+  const handleChange = (e) => {
+    const { name, value} = e.target;
+    setUserCreds({...usercreds, [name]: value})
+  }
+  const handleSubmit =(e)=>{
+  e.preventDefault();
+    alert(usercreds.email);
+  }
+  
+  return (
+    <div>
+      <h3>Sign In </h3>
+      <form className='form'>
+        Email: <input type="email" name="email" onChange={handleChange} /><br/><br/>
+        Password: <input type="password" name="psd" onChange={handleChange} /> <br/>
+        <button onClick = {handleSubmit}>Submit</button>
+      </form>
+     
+    </div>
+  );
+}
+
+const Home = (props) => {
+  const { history } = props; 
+  const handleSubmit = (e) =>{
+     history.push(`${e.target.name}`);
+  }
+  return (
+    <div>
+      <h1> Welcome! This is Home Page</h1>
+      <button name ='signIn' onClick={handleSubmit}>SignIn</button>
+      <button name='about' onClick={handleSubmit} style={{marginLeft:10}}>About</button>
+   </div>
+  );
+}
+const About = () =>{
+  return (
+    <div>
+      <p>This is about page</p>
+    </div>
+  );
+}
+const App = () => {
+  return (
+    <div>
+      <h3> Route</h3>
+      <Switch>
+        <Route exact path = '/' component={Home} />
+        <Route path='/signIn' component={SignIn} />
+        <Route path = '/about' component={About} />
+      </Switch>
+    </div>
+  );
+}
+  
+export default App;
