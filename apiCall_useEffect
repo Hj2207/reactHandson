@@ -1,0 +1,40 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./styles.css"
+
+const App = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(()=> {
+   const func = async () => {
+    const data= await axios.get('https://jsonplaceholder.typicode.com/users');
+    setUsers(data.data);
+    };
+    func();
+  },[]);
+
+  return (
+    <div>
+      <h3> Api call</h3>
+      <table>
+      <tr>
+        <th> Name</th>
+        <th> Email</th>
+        <th> Website</th>
+      </tr>
+      {
+        users.length && users.map(user => {
+         return( 
+           <tr key={user.id}>
+          <td>{user.name}</td>
+          <td> {user.email}</td>
+          <td> {user.website}</td>
+          </tr>
+         );
+        })
+      }
+      </table>
+    </div>
+  );
+}
+  
+export default App;
