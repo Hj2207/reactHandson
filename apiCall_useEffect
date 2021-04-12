@@ -11,7 +11,10 @@ const App = () => {
     };
     func();
   },[]);
-
+ const handleDel = (id) =>{
+   const filteredUsers = users.filter(user => user.id !== id)
+   setUsers(filteredUsers);
+  }
   return (
     <div>
       <h3> Api call</h3>
@@ -28,6 +31,7 @@ const App = () => {
           <td>{user.name}</td>
           <td> {user.email}</td>
           <td> {user.website}</td>
+          <button onClick={()=> handleDel(user.id)}>Delete</button>
           </tr>
          );
         })
